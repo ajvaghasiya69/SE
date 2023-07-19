@@ -1,26 +1,50 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class money
-{
-	friend void dost();
-	public:
-		
-	int a=10;	
-	
-	protected :
-	int b=20;
-	
-	private :
-	int c=30;
+
+class Number {
+public:
+    int value;
+
+public:
+    Number(int num) {
+        value = num;
+    }
+
+    void display() {
+        cout << "Number: " << value << endl;
+    }
+
+    friend void swapNumbers(Number& num1, Number& num2);
 };
- void dost()
- {
- 	money m;
- 	cout<<m.a<<endl;
- 		cout<<m.b<<endl;
- 			cout<<m.c<<endl;
- }
- int main()
- {
- 	dost();
- }
+
+
+void swapNumbers(Number& num1, Number& num2) {
+    num1.value = num1.value + num2.value;
+    num2.value = num1.value - num2.value;
+    num1.value = num1.value - num2.value;
+}
+
+int main() {
+    int num1, num2;
+
+    cout << "Enter number 1: ";
+    cin >> num1;
+    cout << "Enter number 2: ";
+    cin >> num2;
+
+    Number number1(num1);
+    Number number2(num2);
+
+    cout << "Before swapping:" << endl;
+    number1.display();
+    number2.display();
+
+    swapNumbers(number1, number2);
+
+    cout << "After swapping:" << endl;
+    number1.display();
+    number2.display();
+
+    
+}
+
